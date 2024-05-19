@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Loader } from "react-feather";
+import Quotes from "./components/quotes/Quotes";
 import "./App.css";
 
 function App() {
@@ -11,30 +12,30 @@ function App() {
   const quotesUrl =
     "https://gist.githubusercontent.com/skillcrush-curriculum/6365d193df80174943f6664c7c6dbadf/raw/1f1e06df2f4fc3c2ef4c30a3a4010149f270c0e0/quotes.js";
 
-    //create async funciton with try/catch block
-    const fetchQuotes = async ( ) => {
-      try {
-        setLoading(true);
-        const response = await fetch(quotesUrl);
-        const results = await response.json();
-        setQuotes(results);
-      } catch (e) {
-        console.log("Something went wrong", e);
-      }
-      setLoading(false);
-    };
+  //create async funciton with try/catch block
+  const fetchQuotes = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(quotesUrl);
+      const results = await response.json();
+      setQuotes(results);
+    } catch (e) {
+      console.log("Something went wrong", e);
+    }
+    setLoading(false);
+  };
 
-    useEffect(() => {
-      fetchQuotes();
-    }, []);
+  useEffect(() => {
+    fetchQuotes();
+  }, []);
 
   // console.log(quotes);
-  
+
   return (
     <div className='App'>
       <Header />
       <main>
-        {loading ? <Loader /> : JSON.stringify(quotes)}
+        {loading ? <Loader /> : <Quotes quotes={quotes} />}
       </main>
       <Footer />
     </div>
