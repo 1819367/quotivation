@@ -1,6 +1,7 @@
 import React from "react";
+import { Heart } from "react-feather";
 
-function QuoteCard({ quote }) {
+function QuoteCard({ quote, addToFavorites }) {
     // console.log(quote)
     return (
         <article className='quote-card'>
@@ -17,6 +18,9 @@ function QuoteCard({ quote }) {
             <footer>
                 <p className='author'>
                     {quote.author}
+                </p>
+                <p className="add-favorite" onClick={() => addToFavorites(quote.id)}>
+                    <Heart />
                 </p>
             </footer>
         </article>
