@@ -3,13 +3,14 @@ import QuoteCard from "./QuoteCard";
 import CategoryForm from "./CategoryForm";
 
 function Quotes({ filteredQuotes, category, categories, handleCategoryChange, addToFavorites, favoriteQuotes }) {
-    // console.log(filteredQuotes)
     return (
         <section className="all-quotes">
             <div className="quotes wrapper">
                 <div className="category-header">
                     <h2 className="category-header">Pick your Favorite Quotes Below</h2>
-                    <p>Browse through your collection of quotes.</p>
+                    <p>
+                        "You have {filteredQuotes.length} {category !== "All" && category} {filteredQuotes.length === 1 ? "quote" : "quotes"}!
+                    </p>
                     <CategoryForm
                         handleCategoryChange={handleCategoryChange}
                         category={category}
@@ -18,10 +19,10 @@ function Quotes({ filteredQuotes, category, categories, handleCategoryChange, ad
                 {filteredQuotes.map((quote) => (
                     <QuoteCard
                         key={quote.id}
-                        quote={quote} 
+                        quote={quote}
                         addToFavorites={addToFavorites}
                         favoriteQuotes={favoriteQuotes}
-                        />
+                    />
                 ))}
             </div>
         </section>
